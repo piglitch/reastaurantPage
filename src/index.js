@@ -1,11 +1,15 @@
-import { summaryInfo, timingsInfo, locationInfo } from './home.js';
-import { beveragesInfo, sidesInfo, mealsInfo } from './menu.js';
-import { nameInfo, numberInfo, mailInfo } from './contact.js';
+import {nibble} from './home.js';
+import { bluelagoon, tacos, biryani, strawberrycrush } from './menu.js';
+import { cntct} from './contact.js';
 import './style.css';
 import _ from 'lodash';
+
 /////////////////////////////////////////////////////
 const buttonspace = document.createElement('div');
 buttonspace.classList.add('btn')
+
+const xyz = document.createElement('div')
+xyz.classList.add('newbtn')
 
 const homebtn = document.createElement('button');
 homebtn.type = 'button';
@@ -22,18 +26,16 @@ const contactbtn = document.createElement('button');
 contactbtn.type = 'button';
 contactbtn.textContent = 'Contact';
 buttonspace.appendChild(contactbtn)
-
 document.getElementById("content").appendChild(buttonspace);
 
 //// Home should be the first thing one can see when the page loads
-summaryInfo.display()
-timingsInfo.display()
-locationInfo.display()
+nibble.display(xyz)
+document.getElementById("content").appendChild(xyz)
 
 ///// Reusable function to show buttons
 function showButtons() {
     // Clear the document body
-    document.body.innerHTML = '';
+    xyz.innerHTML = '';
 
     // Recreate the buttonspace and append the buttons
     const newButtonSpace = document.createElement('div');
@@ -43,44 +45,47 @@ function showButtons() {
     newButtonSpace.appendChild(contactbtn);
 
     // Append the new buttonspace to the document body
-    document.body.appendChild(newButtonSpace);
+    document.getElementById("content").appendChild(newButtonSpace);
 }
 
 
 
 function homeButton(){   
     homebtn.addEventListener('click', () =>{
-        document.body.innerHTML = '';
         showButtons()
-        summaryInfo.display()
-        timingsInfo.display()
-        locationInfo.display()
+        nibble.display(xyz)
+        document.getElementById("content").appendChild(xyz)
+        xyz.style.backdropFilter = '';
     });
 }
 
 function menuButton(){    
     menubtn.addEventListener('click', () =>{
-        document.body.innerHTML = '';
         showButtons()
-        beveragesInfo.display()
-        sidesInfo.display()
-        mealsInfo.display()
+        bluelagoon.display(xyz)
+        strawberrycrush.display(xyz)
+        tacos.display(xyz)
+        biryani.display(xyz)
+        document.getElementById("content").appendChild(xyz)
+        xyz.style.backdropFilter = 'blur(30px)';
+        xyz.style.borderRadius = "20px";
     });
 }
 
 function contactButton(){    
     contactbtn.addEventListener('click', () =>{
-        document.body.innerHTML = '';
         showButtons()
-        nameInfo.display()
-        numberInfo.display()
-        mailInfo.display()
+        
+        cntct.display(xyz)
+//        numberInfo.display(xyz)
+//        mailInfo.display(xyz)        
+        document.getElementById("content").appendChild(xyz)
+        xyz.style.backdropFilter = '';
     });
 }
 
 homeButton();
 menuButton();
 contactButton();
-
 
 
